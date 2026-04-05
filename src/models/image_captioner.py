@@ -27,7 +27,7 @@ class ImageCaptioner:
         self.imagefile_template = imagefile_template
         self.dtype = self._get_dtype(dtype_str)
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.processor = Blip2Processor.from_pretrained(pretrained_model_name)
+        self.processor = Blip2Processor.from_pretrained(pretrained_model_name, use_fast=False)
         self.model = Blip2ForConditionalGeneration.from_pretrained(
             pretrained_model_name, torch_dtype=self.dtype
         )
